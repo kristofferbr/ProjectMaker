@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjectMaker
 {
-    public partial class Form2 : Form
+    public partial class EventOverview : Form
     {
-        public Form2()
+        public EventOverview()
         {
             InitializeComponent();
         }

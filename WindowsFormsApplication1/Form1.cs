@@ -11,7 +11,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-namespace WindowsFormsApplication1
+namespace ProjectMaker
 {
     public partial class Form1 : Form
     {
@@ -123,14 +123,14 @@ namespace WindowsFormsApplication1
             UpperClass.TaskTime Timen = new UpperClass.TaskTime(); 
 
             /*Check to see if there are zero or some in it...*/
-            if (!string.IsNullOrWhiteSpace(this.Navn.Text) && !string.IsNullOrWhiteSpace(this.TidFra.Text) && !string.IsNullOrWhiteSpace(this.Tildil.Text))
+            if (!string.IsNullOrWhiteSpace(this.Navn.Text) && !string.IsNullOrWhiteSpace(this.TidFra.Text) && !string.IsNullOrWhiteSpace(this.TidTil.Text))
             {
                 /*Clears the view so there is no dublicates*/
                 WorkerBox.Items.Clear();
 
                 /*Worker instances*/
                 Worker worker = new Worker(this.Navn.Text);
-                Worker tw = new Worker(this.Navn.Text);
+                Worker tempWorker = new Worker(this.Navn.Text);
 
                 
 
@@ -140,7 +140,7 @@ namespace WindowsFormsApplication1
                     if (this.Navn.Text == m.Name)
                     {
                         worker = m;
-                        tw = m;
+                        tempWorker = m;
 
                     }
 
@@ -148,17 +148,17 @@ namespace WindowsFormsApplication1
 
                 /*Parses the date and adds it to the Task type*/
                 Timen.TaskStart = DateTime.Parse(this.TidFra.Text);
-                Timen.TaskEnd = DateTime.Parse(this.Tildil.Text);
+                Timen.TaskEnd = DateTime.Parse(this.TidTil.Text);
 
                 /*Adds the work hours to the worker*/
                 worker.WorkTime.AddLast(Timen);
 
 
                 /*Replaces or adds a worker to the list*/
-                if (LoadList.workerList.Find(tw) != null)
+                if (LoadList.workerList.Find(tempWorker) != null)
                 {
-                    LoadList.workerList.AddAfter(LoadList.workerList.Find(tw), worker);
-                    LoadList.workerList.Remove(tw);
+                    LoadList.workerList.AddAfter(LoadList.workerList.Find(tempWorker), worker);
+                    LoadList.workerList.Remove(tempWorker);
                 }
                 else
                 {
@@ -176,7 +176,7 @@ namespace WindowsFormsApplication1
                 /*Clears the text fields*/
                 this.Navn.Clear();
                 this.TidFra.Clear();
-                this.Tildil.Clear();
+                this.TidTil.Clear();
 
                 LoadList.SaveData(LoadList);
             }
@@ -195,7 +195,7 @@ namespace WindowsFormsApplication1
             {
                 foreach(Worker w in LoadList.workerList)
                 {
-                    foreach(WindowsFormsApplication1.UpperClass.TaskTime m in w.WorkTime)
+                    foreach(ProjectMaker.UpperClass.TaskTime m in w.WorkTime)
                     {
                         if(m.TaskStart >= t.TaskTime.TaskStart)
                         {

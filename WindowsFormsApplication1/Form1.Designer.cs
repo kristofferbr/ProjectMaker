@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace ProjectMaker
 {
     partial class Form1
     {
@@ -31,7 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Navn = new System.Windows.Forms.TextBox();
             this.TidFra = new System.Windows.Forms.TextBox();
-            this.Tildil = new System.Windows.Forms.TextBox();
+            this.TidTil = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -81,10 +81,10 @@
             // 
             // Tildil
             // 
-            this.Tildil.Location = new System.Drawing.Point(37, 146);
-            this.Tildil.Name = "Tildil";
-            this.Tildil.Size = new System.Drawing.Size(100, 20);
-            this.Tildil.TabIndex = 4;
+            this.TidTil.Location = new System.Drawing.Point(37, 146);
+            this.TidTil.Name = "Tildil";
+            this.TidTil.Size = new System.Drawing.Size(100, 20);
+            this.TidTil.TabIndex = 4;
             // 
             // label1
             // 
@@ -283,7 +283,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Tildil);
+            this.Controls.Add(this.TidTil);
             this.Controls.Add(this.TidFra);
             this.Controls.Add(this.Navn);
             this.Controls.Add(this.button1);
@@ -301,7 +301,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox Navn;
         private System.Windows.Forms.TextBox TidFra;
-        private System.Windows.Forms.TextBox Tildil;
+        private System.Windows.Forms.TextBox TidTil;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
