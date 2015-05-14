@@ -61,16 +61,16 @@ namespace ProjectMaker
             return false;
         }
 
-        public List<Tasks> workerList
+        public List<Tasks> taskList
         {
-            get { return this._workerList; }
+            get { return this._taskList; }
         }
 
-        public Boolean addWorker(Tasks workerToAdd)
+        public Boolean addTask(Tasks taskToAdd)
         {
-            if (!_tasksList.Contains(workerToAdd))
+            if (!_taskList.Contains(taskToAdd))
             {
-                _tasksList.Add(workerToAdd);
+                _taskList.Add(taskToAdd);
                 return true;
             }
 
