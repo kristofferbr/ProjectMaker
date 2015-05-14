@@ -60,6 +60,7 @@
     <Compile Include="Plan.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shift.cs" />
     <Compile Include="Tasks.cs" />
     <Compile Include="UpperClass.cs" />
     <Compile Include="Worker.cs" />
