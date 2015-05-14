@@ -12,6 +12,7 @@ namespace WindowsFormsApplication1
 
         private TaskTime _taskTime = new TaskTime();
         private LinkedList<Worker> _occupants = new LinkedList<Worker>();
+        private LinkedList<Shift> _shift = new LinkedList<Shift>();
         private string _name;
         private int _participants;
 
@@ -36,6 +37,17 @@ namespace WindowsFormsApplication1
             set
             {
                 _taskTime = value;
+            }
+        }
+        public LinkedList<Shift> Shift
+        {
+            get
+            {
+                return _shift;
+            }
+            set
+            {
+                _shift = value;
             }
         }
         public int Participants

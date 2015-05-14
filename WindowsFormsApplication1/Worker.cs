@@ -32,6 +32,32 @@ namespace WindowsFormsApplication1
                 return _name;
             }
         }
+
+        public LinkedList<TaskTime> OccupationTime
+        {
+            get
+            {
+                return _occTime;
+            }
+            set
+            {
+                _occTime = value;
+            }
+        }
+
+        public void setWorkTime(TaskTime time)
+        {
+            WorkTime.AddLast(time);
+        }
+
+        public void setTask(Tasks task)
+        {
+            _myTasks.AddLast(task);
+        }
+        public LinkedList<Tasks> GetTaskList()
+        {
+            return _myTasks;
+        }
     
    
 

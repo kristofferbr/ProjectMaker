@@ -199,7 +199,8 @@ namespace WindowsFormsApplication1
                     {
                         if(m.TaskStart >= t.TaskTime.TaskStart)
                         {
-
+                            
+                            
                         }
                     }
                 }
@@ -261,10 +262,6 @@ namespace WindowsFormsApplication1
             this.TaskName.Clear();
             this.TaskTimeStart.Clear();
             this.TaskTimeEnd.Clear();
-
-
-            
-            
 
         }
 
