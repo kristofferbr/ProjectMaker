@@ -30,27 +30,29 @@ namespace ProjectMaker
 
 
         /*Save the object*/
-        public void SaveData(Data data)
+        public void SaveData()
         {
 
             IFormatter form = new BinaryFormatter();
             Stream stream = new FileStream("Dataset.bin", FileMode.Create, FileAccess.Write, FileShare.None);
 
-            form.Serialize(stream, data);
+            form.Serialize(stream, this);
             stream.Close();
 
 
         }
 
         /*Load the object*/
-        public Data LoadData()
+        public void LoadData()
         {
             IFormatter form = new BinaryFormatter();
             Stream stream = new FileStream("Dataset.bin", FileMode.Open, FileAccess.Read, FileShare.None);
             Data data = (Data)form.Deserialize(stream);
             stream.Close();
 
-            return data;
+            this.workerList = data.workerList;
+
+            this.TaskList = data.TaskList;
 
         }
 

@@ -16,7 +16,7 @@ namespace ProjectMaker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new EventOverview());
 
             LinkedList<Worker> workerList = new LinkedList<Worker>();
             LinkedList<Tasks> TaskList = new LinkedList<Tasks>();
