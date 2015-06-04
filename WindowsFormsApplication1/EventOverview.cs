@@ -20,6 +20,7 @@ namespace ProjectMaker
         public EventOverview()
         {
             InitializeComponent();
+            listBox1.SelectedIndex = 1;
         }
 
         private void EventOverview_Load(object sender, EventArgs e)
@@ -31,18 +32,20 @@ namespace ProjectMaker
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chosenEvent = new Event(listBox1.SelectedItem.ToString());
+
+            string curItem = listBox1.SelectedItem.ToString();
+            chosenEvent = new Event(curItem);
             textBox1.Text = "";
             string data = chosenEvent.eventName + "\n" + chosenEvent.eventDescription;
             textBox1.Text = data;
-
+        
 
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             string file = this.listBox1.SelectedItem.ToString();
-            Form1 m = new Form1(file);
+            EventManager m = new EventManager(file);
             m.Show();
             //this.close();
         }
@@ -72,6 +75,12 @@ namespace ProjectMaker
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void newEvent_Click(object sender, EventArgs e)
+        {
+            EventCreator m = new EventCreator();
+            m.Show();
         }
     }
 }

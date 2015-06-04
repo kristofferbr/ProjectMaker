@@ -47,6 +47,12 @@
   <ItemGroup>
     <Compile Include="Event.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="EventCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventCreator.Designer.cs">
+      <DependentUpon>EventCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventDay.cs" />
     <Compile Include="EventOverview.cs">
       <SubType>Form</SubType>
@@ -54,17 +60,17 @@
     <Compile Include="EventOverview.Designer.cs">
       <DependentUpon>EventOverview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="EventManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="EventManager.Designer.cs">
+      <DependentUpon>EventManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="PlanGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="PlanGenerator.Designer.cs">
+      <DependentUpon>PlanGenerator.cs</DependentUpon>
     </Compile>
     <Compile Include="Plan.cs" />
     <Compile Include="Program.cs" />
@@ -72,14 +78,17 @@
     <Compile Include="Tasks.cs" />
     <Compile Include="UpperClass.cs" />
     <Compile Include="Worker.cs" />
+    <EmbeddedResource Include="EventCreator.resx">
+      <DependentUpon>EventCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EventOverview.resx">
       <DependentUpon>EventOverview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="EventManager.resx">
+      <DependentUpon>EventManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="PlanGenerator.resx">
+      <DependentUpon>PlanGenerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

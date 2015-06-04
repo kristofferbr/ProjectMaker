@@ -13,34 +13,34 @@ using System.IO;
 
 namespace ProjectMaker
 {
-    public partial class Form1 : Form
+    public partial class EventManager : Form
     {
         /**/
-        new Event LoadList;
-        
-        public Form1(string name)
+        new Event currentEvent;
+
+        public EventManager(string name)
         {
             InitializeComponent();
 
             if (File.Exists(name))
             {
-                LoadList.LoadData(name);
-                foreach (Worker w in LoadList.workerList)
+                currentEvent.LoadData(name);
+                foreach (Worker w in currentEvent.workerList)
                 {
                     this.WorkerBox.Items.Add(w.Name);
                 }
 
-                foreach (Tasks t in LoadList.taskList)
+                foreach (Tasks t in currentEvent.taskList)
                 {
                     this.TaskBox.Items.Add(t.Name);
                 }
             }
             else
             {
-                LoadList = new Event(name);
+                currentEvent = new Event(name);
             }
 
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace ProjectMaker
             this.Navn.Text = (string)lb.SelectedItem;
 
             /*Adds to the TimeBox*/
-            foreach (Worker w in LoadList.workerList)
+            foreach (Worker w in currentEvent.workerList)
             {
                 if (w.Name == (string)lb.SelectedItem)
                 {
@@ -111,24 +111,24 @@ namespace ProjectMaker
             this.TaskName.Text = (string)lb.SelectedItem;
 
             /*Displays the times and dates in the TimeBox*/
-            foreach (Tasks t in LoadList.taskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
                 if (t.Name == (string)lb.SelectedItem)
                 {
                     TimeBox.Items.Add(t.TaskTime.TaskStart.ToString("dd/MM"));
                     TimeBox.Items.Add(" " + t.TaskTime.TaskStart.ToString("HH:mm"));
                     TimeBox.Items.Add(" " + t.TaskTime.TaskEnd.ToString("HH:mm"));
-                    
+
                 }
             }
         }
- 
+
         /*When a worker is added*/
         public void addWorker()
         {
 
             /*Variables*/
-            UpperClass.TaskTime Timen = new UpperClass.TaskTime(); 
+            UpperClass.TaskTime Timen = new UpperClass.TaskTime();
 
             /*Check to see if there are zero or some in it...*/
             if (!string.IsNullOrWhiteSpace(this.Navn.Text) && !string.IsNullOrWhiteSpace(this.TidFra.Text) && !string.IsNullOrWhiteSpace(this.TidTil.Text))
@@ -140,10 +140,10 @@ namespace ProjectMaker
                 Worker worker = new Worker(this.Navn.Text);
                 Worker tempWorker = new Worker(this.Navn.Text);
 
-                
+
 
                 /*Checks if there is a date added to when the worker can work*/
-                foreach (Worker m in LoadList.workerList)
+                foreach (Worker m in currentEvent.workerList)
                 {
                     if (this.Navn.Text == m.Name)
                     {
@@ -163,20 +163,20 @@ namespace ProjectMaker
 
 
                 /*Replaces or adds a worker to the list*/
-                if (LoadList.workerList.Find(tempWorker) != null)
+                if (currentEvent.workerList.Find(tempWorker) != null)
                 {
-                    LoadList.workerList.AddAfter(LoadList.workerList.Find(tempWorker), worker);
-                    LoadList.workerList.Remove(tempWorker);
+                    currentEvent.workerList.AddAfter(currentEvent.workerList.Find(tempWorker), worker);
+                    currentEvent.workerList.Remove(tempWorker);
                 }
                 else
                 {
-                    LoadList.workerList.AddLast(worker);
+                    currentEvent.workerList.AddLast(worker);
                 }
 
 
                 /*Adds the workers to the ListBox in the Form*/
                 this.WorkerBox.Items.Clear();
-                foreach (Worker w in LoadList.workerList)
+                foreach (Worker w in currentEvent.workerList)
                 {
                     this.WorkerBox.Items.Add(w.Name);
                 }
@@ -186,7 +186,7 @@ namespace ProjectMaker
                 this.TidFra.Clear();
                 this.TidTil.Clear();
 
-                LoadList.SaveData();
+                currentEvent.SaveData();
             }
         }
 
@@ -194,18 +194,18 @@ namespace ProjectMaker
         public void generatePlan()
         {
 
-            Form2 form = new Form2();
+            PlanGenerator form = new PlanGenerator();
             form.Show();
             LinkedList<DateTime> StartTimeList = new LinkedList<DateTime>();
             LinkedList<DateTime> EndTimeList = new LinkedList<DateTime>();
 
-            foreach(Tasks t in LoadList.taskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
-                foreach(Worker w in LoadList.workerList)
+                foreach (Worker w in currentEvent.workerList)
                 {
-                    foreach(ProjectMaker.UpperClass.TaskTime m in w.WorkTime)
+                    foreach (ProjectMaker.UpperClass.TaskTime m in w.WorkTime)
                     {
-                        if(m.TaskStart >= t.TaskTime.TaskStart)
+                        if (m.TaskStart >= t.TaskTime.TaskStart)
                         {
 
                         }
@@ -224,13 +224,13 @@ namespace ProjectMaker
             /*Variables*/
             Tasks task = new Tasks();
             Tasks tempTask = new Tasks();
-            UpperClass.TaskTime Timen = new UpperClass.TaskTime(); 
-            
+            UpperClass.TaskTime Timen = new UpperClass.TaskTime();
+
 
             /*Checks if the task is already in the list and creates temporary instance for replacing*/
-            foreach(Tasks t in LoadList.taskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
-                if(this.TaskName.Text == t.Name)
+                if (this.TaskName.Text == t.Name)
                 {
                     task = t;
                     tempTask = t;
@@ -246,23 +246,23 @@ namespace ProjectMaker
 
 
             /*Checks if there is need to replace or add to the list*/
-            if(LoadList.taskList.Find(tempTask) != null)
+            if (currentEvent.taskList.Find(tempTask) != null)
             {
-                LoadList.taskList.AddAfter(LoadList.taskList.Find(tempTask), task);
-                LoadList.taskList.Remove(tempTask);
+                currentEvent.taskList.AddAfter(currentEvent.taskList.Find(tempTask), task);
+                currentEvent.taskList.Remove(tempTask);
 
             }
             else
             {
-                LoadList.taskList.AddLast(task);
+                currentEvent.taskList.AddLast(task);
             }
 
-            LoadList.SaveData();
+            currentEvent.SaveData();
 
 
             /*Inserts the tasks in the TaskBox*/
             this.TaskBox.Items.Clear();
-            foreach(Tasks t in LoadList.taskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
                 this.TaskBox.Items.Add(t.Name);
             }
@@ -273,8 +273,8 @@ namespace ProjectMaker
             this.TaskTimeEnd.Clear();
 
 
-            
-            
+
+
 
         }
 
@@ -282,16 +282,19 @@ namespace ProjectMaker
         private void DeleteData_Click(object sender, EventArgs e)
         {
 
-            Data data = new Data();
-            LoadList.SaveData();
+            currentEvent.DeleteData();
             this.WorkerBox.Items.Clear();
             this.TaskBox.Items.Clear();
-
-
-        }
         }
 
-
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            currentEvent.SaveData();
+            Close();
+        }
     }
+
+
+}
 
 

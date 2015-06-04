@@ -94,7 +94,7 @@ namespace ProjectMaker
         {
 
             IFormatter form = new BinaryFormatter();
-            Stream stream = new FileStream(this._eventName + ".bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            Stream stream = new FileStream(this._eventName + ".bin", FileMode.Open, FileAccess.Write, FileShare.None);
 
             form.Serialize(stream, this);
             stream.Close();
@@ -112,7 +112,7 @@ namespace ProjectMaker
 
             this._workerList = data.workerList;
 
-            this._taskList = data._taskList;
+            this._taskList = data.taskList;
 
         }
 

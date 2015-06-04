@@ -1,6 +1,6 @@
 ﻿namespace ProjectMaker
 {
-    partial class Form2
+    partial class PlanGenerator
     {
         /// <summary>
         /// Required designer variable.
