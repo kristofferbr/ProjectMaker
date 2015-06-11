@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace ProjectMaker
 {
-    public partial class Form2 : Form
+    public partial class PlanGenerator : Form
     {
-        public Form2()
+        public PlanGenerator()
         {
             InitializeComponent();
         }

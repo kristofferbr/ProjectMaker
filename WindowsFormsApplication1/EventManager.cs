@@ -11,28 +11,31 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-namespace WindowsFormsApplication1
+namespace ProjectMaker
 {
-    public partial class Form1 : Form
+    public partial class EventManager : Form
     {
         /**/
-        new Data LoadList = new Data();
-        
-        public Form1()
+        new Event currentEvent;
+
+        public EventManager(string name)
         {
             InitializeComponent();
 
-            LoadList = LoadList.LoadData();
-
-            foreach (Worker w in LoadList.workerList)
+            currentEvent = new Event(name);
+            currentEvent.LoadData(name);
+            foreach (Worker w in currentEvent.workerList)
             {
                 this.WorkerBox.Items.Add(w.Name);
             }
 
-            foreach (Tasks t in LoadList.TaskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
                 this.TaskBox.Items.Add(t.Name);
             }
+            
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -74,7 +77,7 @@ namespace WindowsFormsApplication1
             this.Navn.Text = (string)lb.SelectedItem;
 
             /*Adds to the TimeBox*/
-            foreach (Worker w in LoadList.workerList)
+            foreach (Worker w in currentEvent.workerList)
             {
                 if (w.Name == (string)lb.SelectedItem)
                 {
@@ -103,44 +106,44 @@ namespace WindowsFormsApplication1
             this.TaskName.Text = (string)lb.SelectedItem;
 
             /*Displays the times and dates in the TimeBox*/
-            foreach (Tasks t in LoadList.TaskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
                 if (t.Name == (string)lb.SelectedItem)
                 {
                     TimeBox.Items.Add(t.TaskTime.TaskStart.ToString("dd/MM"));
                     TimeBox.Items.Add(" " + t.TaskTime.TaskStart.ToString("HH:mm"));
                     TimeBox.Items.Add(" " + t.TaskTime.TaskEnd.ToString("HH:mm"));
-                    
+
                 }
             }
         }
- 
+
         /*When a worker is added*/
         public void addWorker()
         {
 
             /*Variables*/
-            UpperClass.TaskTime Timen = new UpperClass.TaskTime(); 
+            UpperClass.TaskTime Timen = new UpperClass.TaskTime();
 
             /*Check to see if there are zero or some in it...*/
-            if (!string.IsNullOrWhiteSpace(this.Navn.Text) && !string.IsNullOrWhiteSpace(this.TidFra.Text) && !string.IsNullOrWhiteSpace(this.Tildil.Text))
+            if (!string.IsNullOrWhiteSpace(this.Navn.Text) && !string.IsNullOrWhiteSpace(this.TidFra.Text) && !string.IsNullOrWhiteSpace(this.TidTil.Text))
             {
                 /*Clears the view so there is no dublicates*/
                 WorkerBox.Items.Clear();
 
                 /*Worker instances*/
                 Worker worker = new Worker(this.Navn.Text);
-                Worker tw = new Worker(this.Navn.Text);
+                Worker tempWorker = new Worker(this.Navn.Text);
 
-                
+
 
                 /*Checks if there is a date added to when the worker can work*/
-                foreach (Worker m in LoadList.workerList)
+                foreach (Worker m in currentEvent.workerList)
                 {
                     if (this.Navn.Text == m.Name)
                     {
                         worker = m;
-                        tw = m;
+                        tempWorker = m;
 
                     }
 
@@ -148,27 +151,27 @@ namespace WindowsFormsApplication1
 
                 /*Parses the date and adds it to the Task type*/
                 Timen.TaskStart = DateTime.Parse(this.TidFra.Text);
-                Timen.TaskEnd = DateTime.Parse(this.Tildil.Text);
+                Timen.TaskEnd = DateTime.Parse(this.TidTil.Text);
 
                 /*Adds the work hours to the worker*/
                 worker.WorkTime.AddLast(Timen);
 
 
                 /*Replaces or adds a worker to the list*/
-                if (LoadList.workerList.Find(tw) != null)
+                if (currentEvent.workerList.Find(tempWorker) != null)
                 {
-                    LoadList.workerList.AddAfter(LoadList.workerList.Find(tw), worker);
-                    LoadList.workerList.Remove(tw);
+                    currentEvent.workerList.AddAfter(currentEvent.workerList.Find(tempWorker), worker);
+                    currentEvent.workerList.Remove(tempWorker);
                 }
                 else
                 {
-                    LoadList.workerList.AddLast(worker);
+                    currentEvent.workerList.AddLast(worker);
                 }
 
 
                 /*Adds the workers to the ListBox in the Form*/
                 this.WorkerBox.Items.Clear();
-                foreach (Worker w in LoadList.workerList)
+                foreach (Worker w in currentEvent.workerList)
                 {
                     this.WorkerBox.Items.Add(w.Name);
                 }
@@ -176,9 +179,9 @@ namespace WindowsFormsApplication1
                 /*Clears the text fields*/
                 this.Navn.Clear();
                 this.TidFra.Clear();
-                this.Tildil.Clear();
+                this.TidTil.Clear();
 
-                LoadList.SaveData(LoadList);
+                currentEvent.SaveData();
             }
         }
 
@@ -186,18 +189,18 @@ namespace WindowsFormsApplication1
         public void generatePlan()
         {
 
-            Form2 form = new Form2();
+            PlanGenerator form = new PlanGenerator();
             form.Show();
             LinkedList<DateTime> StartTimeList = new LinkedList<DateTime>();
             LinkedList<DateTime> EndTimeList = new LinkedList<DateTime>();
 
-            foreach(Tasks t in LoadList.TaskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
-                foreach(Worker w in LoadList.workerList)
+                foreach (Worker w in currentEvent.workerList)
                 {
-                    foreach(WindowsFormsApplication1.UpperClass.TaskTime m in w.WorkTime)
+                    foreach (ProjectMaker.UpperClass.TaskTime m in w.WorkTime)
                     {
-                        if(m.TaskStart >= t.TaskTime.TaskStart)
+                        if (m.TaskStart >= t.TaskTime.TaskStart)
                         {
 
                         }
@@ -216,13 +219,13 @@ namespace WindowsFormsApplication1
             /*Variables*/
             Tasks task = new Tasks();
             Tasks tempTask = new Tasks();
-            UpperClass.TaskTime Timen = new UpperClass.TaskTime(); 
-            
+            UpperClass.TaskTime Timen = new UpperClass.TaskTime();
+
 
             /*Checks if the task is already in the list and creates temporary instance for replacing*/
-            foreach(Tasks t in LoadList.TaskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
-                if(this.TaskName.Text == t.Name)
+                if (this.TaskName.Text == t.Name)
                 {
                     task = t;
                     tempTask = t;
@@ -238,23 +241,23 @@ namespace WindowsFormsApplication1
 
 
             /*Checks if there is need to replace or add to the list*/
-            if(LoadList.TaskList.Find(tempTask) != null)
+            if (currentEvent.taskList.Find(tempTask) != null)
             {
-                LoadList.TaskList.AddAfter(LoadList.TaskList.Find(tempTask), task);
-                LoadList.TaskList.Remove(tempTask);
+                currentEvent.taskList.AddAfter(currentEvent.taskList.Find(tempTask), task);
+                currentEvent.taskList.Remove(tempTask);
 
             }
             else
             {
-                LoadList.TaskList.AddLast(task);
+                currentEvent.taskList.AddLast(task);
             }
 
-            LoadList.SaveData(LoadList);
+            currentEvent.SaveData();
 
 
             /*Inserts the tasks in the TaskBox*/
             this.TaskBox.Items.Clear();
-            foreach(Tasks t in LoadList.TaskList)
+            foreach (Tasks t in currentEvent.taskList)
             {
                 this.TaskBox.Items.Add(t.Name);
             }
@@ -265,8 +268,8 @@ namespace WindowsFormsApplication1
             this.TaskTimeEnd.Clear();
 
 
-            
-            
+
+
 
         }
 
@@ -274,16 +277,19 @@ namespace WindowsFormsApplication1
         private void DeleteData_Click(object sender, EventArgs e)
         {
 
-            Data data = new Data();
-            LoadList.SaveData(data);
+            currentEvent.DeleteData();
             this.WorkerBox.Items.Clear();
             this.TaskBox.Items.Clear();
-
-
-        }
         }
 
-
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            currentEvent.SaveData();
+            Close();
+        }
     }
+
+
+}
 
 
