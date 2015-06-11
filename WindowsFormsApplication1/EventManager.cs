@@ -16,7 +16,7 @@ namespace ProjectMaker
     public partial class EventManager : Form
     {
         /**/
-        new Event currentEvent;
+        private Event currentEvent;
 
         public EventManager(string name)
         {
@@ -110,9 +110,9 @@ namespace ProjectMaker
             {
                 if (t.Name == (string)lb.SelectedItem)
                 {
-                    TimeBox.Items.Add(t.TaskTime.TaskStart.ToString("dd/MM"));
-                    TimeBox.Items.Add(" " + t.TaskTime.TaskStart.ToString("HH:mm"));
-                    TimeBox.Items.Add(" " + t.TaskTime.TaskEnd.ToString("HH:mm"));
+                    TimeBox.Items.Add(t.taskTime.TaskStart.ToString("dd/MM"));
+                    TimeBox.Items.Add(" " + t.taskTime.TaskStart.ToString("HH:mm"));
+                    TimeBox.Items.Add(" " + t.taskTime.TaskEnd.ToString("HH:mm"));
 
                 }
             }
@@ -200,7 +200,7 @@ namespace ProjectMaker
                 {
                     foreach (ProjectMaker.UpperClass.TaskTime m in w.WorkTime)
                     {
-                        if (m.TaskStart >= t.TaskTime.TaskStart)
+                        if (m.TaskStart >= t.taskTime.TaskStart)
                         {
 
                         }
@@ -237,7 +237,7 @@ namespace ProjectMaker
             task.Name = this.TaskName.Text;
             Timen.TaskStart = DateTime.Parse(this.TaskTimeStart.Text);
             Timen.TaskEnd = DateTime.Parse(this.TaskTimeEnd.Text);
-            task.TaskTime = Timen;
+            task.taskTime = Timen;
 
 
             /*Checks if there is need to replace or add to the list*/

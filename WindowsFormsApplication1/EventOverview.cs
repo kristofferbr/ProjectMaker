@@ -41,9 +41,24 @@ namespace ProjectMaker
             {
                 string curItem = listBox1.SelectedItem.ToString();
                 chosenEvent = new Event(curItem);
+                chosenEvent.LoadData(curItem);
                 textBox1.Text = "";
                 string data = chosenEvent.eventName + "\n" + chosenEvent.eventDescription;
                 textBox1.Text = data;
+                taskDataGrid.Rows.Clear();
+                foreach(Tasks t in chosenEvent.taskList){
+                    this.taskDataGrid.Rows.Add(t.Name, t.taskTime.TaskStart + " - " + t.taskTime.TaskEnd, t.TaskLocation, t.Description);
+                }
+                workerDataGrid.Rows.Clear();
+                foreach (Worker w in chosenEvent.workerList)
+                {
+                    string canDrive;
+                    if (w.DriverLicense)
+                        canDrive = "Yes";
+                    else
+                        canDrive = "No";
+                    this.workerDataGrid.Rows.Add(w.Initials, w.Name, w.City, canDrive, w.PhoneNumber, w.ActiveTime + " måneder");
+                }
             }
 
         }
@@ -91,6 +106,21 @@ namespace ProjectMaker
         {
             EventCreator m = new EventCreator(this);
             m.Show();
+        }
+
+        private void updateTaskDataGridContent()
+        {
+
+        }
+
+        private void updateWorkerDataGridContent()
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

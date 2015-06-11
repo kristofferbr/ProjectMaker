@@ -13,6 +13,8 @@ namespace ProjectMaker
         private TaskTime _taskTime = new TaskTime();
         private LinkedList<Worker> _occupants = new LinkedList<Worker>();
         private string _name;
+        private string _taskLocation;
+        private string _description;
         private int _participants;
 
 
@@ -27,7 +29,29 @@ namespace ProjectMaker
                 _name = value;
             }
         }
-        public TaskTime TaskTime
+        public string TaskLocation
+        {
+            get
+            {
+                return _taskLocation;
+            }
+            set
+            {
+                _taskLocation = value;
+            }
+        }
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = value;
+            }
+        }
+        public TaskTime taskTime
         {
             get
             {
