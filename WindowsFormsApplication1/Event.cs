@@ -108,12 +108,15 @@ namespace ProjectMaker
             IFormatter form = new BinaryFormatter();
             Stream stream = new FileStream(name + ".bin", FileMode.Open, FileAccess.Read, FileShare.None);
             Event data = (Event)form.Deserialize(stream);
-            stream.Close();
+
+            this._eventName = data.eventName;
 
             this._workerList = data.workerList;
 
             this._taskList = data.taskList;
 
+
+            stream.Close();
         }
 
         public void DeleteData()

@@ -15,9 +15,13 @@ namespace ProjectMaker
 {
     public partial class EventCreator : Form
     {
-        public EventCreator()
+        private EventOverview mainForm;
+
+        public EventCreator(EventOverview mainForm)
         {
             InitializeComponent();
+
+            this.mainForm = mainForm;
         }
 
         private void createEvent_Click(object sender, EventArgs e)
@@ -43,6 +47,8 @@ namespace ProjectMaker
 
             form.Serialize(stream, newEvent);
             stream.Close();
+
+            mainForm.UpdateEventListBox();
 
             Close();
         }

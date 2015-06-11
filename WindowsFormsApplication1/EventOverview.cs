@@ -13,45 +13,55 @@ namespace ProjectMaker
 {
     public partial class EventOverview : Form
     {
-        private string directoryPath = @"Z:\Desktop\TestFolder";
+        private string directoryPath = @"Z:\Desktop\Git\ProjectMaker\WindowsFormsApplication1\bin\Debug";
         private string fileExtension = "*.bin";
         private Event chosenEvent;
 
         public EventOverview()
         {
             InitializeComponent();
-            listBox1.SelectedIndex = 1;
+
         }
 
         private void EventOverview_Load(object sender, EventArgs e)
         {
 
-            PopulateListBox(listBox1, directoryPath, fileExtension);
+            UpdateEventListBox();
 
+        }
+
+        public void UpdateEventListBox()
+        {
+            PopulateListBox(listBox1, directoryPath, fileExtension);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            string curItem = listBox1.SelectedItem.ToString();
-            chosenEvent = new Event(curItem);
-            textBox1.Text = "";
-            string data = chosenEvent.eventName + "\n" + chosenEvent.eventDescription;
-            textBox1.Text = data;
-        
+            if (listBox1.SelectedIndex != -1)
+            {
+                string curItem = listBox1.SelectedItem.ToString();
+                chosenEvent = new Event(curItem);
+                textBox1.Text = "";
+                string data = chosenEvent.eventName + "\n" + chosenEvent.eventDescription;
+                textBox1.Text = data;
+            }
 
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            string file = this.listBox1.SelectedItem.ToString();
-            EventManager m = new EventManager(file);
-            m.Show();
-            //this.close();
+            if (listBox1.SelectedIndex != -1)
+            {
+                string file = this.listBox1.SelectedItem.ToString();
+                EventManager m = new EventManager(file);
+                m.Show();
+                //this.close();
+            }
         }
 
         private void PopulateListBox(ListBox lsb, string Folder, string FileType)
         {
+            lsb.Items.Clear();
             DirectoryInfo dinfo = new DirectoryInfo(Folder);
             FileInfo[] Files = dinfo.GetFiles(FileType);
             foreach (FileInfo file in Files)
@@ -79,7 +89,7 @@ namespace ProjectMaker
 
         private void newEvent_Click(object sender, EventArgs e)
         {
-            EventCreator m = new EventCreator();
+            EventCreator m = new EventCreator(this);
             m.Show();
         }
     }

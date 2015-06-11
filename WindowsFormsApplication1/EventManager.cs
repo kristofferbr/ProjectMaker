@@ -22,23 +22,18 @@ namespace ProjectMaker
         {
             InitializeComponent();
 
-            if (File.Exists(name))
+            currentEvent = new Event(name);
+            currentEvent.LoadData(name);
+            foreach (Worker w in currentEvent.workerList)
             {
-                currentEvent.LoadData(name);
-                foreach (Worker w in currentEvent.workerList)
-                {
-                    this.WorkerBox.Items.Add(w.Name);
-                }
+                this.WorkerBox.Items.Add(w.Name);
+            }
 
-                foreach (Tasks t in currentEvent.taskList)
-                {
-                    this.TaskBox.Items.Add(t.Name);
-                }
-            }
-            else
+            foreach (Tasks t in currentEvent.taskList)
             {
-                currentEvent = new Event(name);
+                this.TaskBox.Items.Add(t.Name);
             }
+            
 
 
         }
