@@ -1,0 +1,11 @@
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\bin\Debug\ProjectMaker.exe.config
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\bin\Debug\ProjectMaker.exe
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\bin\Debug\ProjectMaker.pdb
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.EventCreator.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.EventOverview.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.EventManager.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.PlanGenerator.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.Properties.Resources.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.csproj.GenerateResource.Cache
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.exe
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\ProjectMaker.pdb

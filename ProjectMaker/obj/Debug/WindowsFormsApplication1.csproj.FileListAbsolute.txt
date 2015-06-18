@@ -1,0 +1,10 @@
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form2.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+\\server8\users\OTT\Desktop\Git\ProjectMaker\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb

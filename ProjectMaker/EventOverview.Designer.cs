@@ -32,11 +32,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.newEvent_Button = new System.Windows.Forms.Button();
             this.taskDataGrid = new System.Windows.Forms.DataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabController = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -48,6 +43,11 @@
             this.phoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.taskDataGrid)).BeginInit();
             this.tabController.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -62,7 +62,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 13);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(109, 472);
+            this.listBox1.Size = new System.Drawing.Size(109, 485);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
@@ -97,45 +97,15 @@
             this.taskDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.taskDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.name,
-            this.description,
+            this.startTime,
             this.duration,
             this.location,
-            this.Column1});
+            this.description});
             this.taskDataGrid.Location = new System.Drawing.Point(3, 3);
             this.taskDataGrid.Name = "taskDataGrid";
             this.taskDataGrid.ReadOnly = true;
             this.taskDataGrid.Size = new System.Drawing.Size(543, 226);
             this.taskDataGrid.TabIndex = 4;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Opgave navn";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // description
-            // 
-            this.description.HeaderText = "Start tid";
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            // 
-            // duration
-            // 
-            this.duration.HeaderText = "Varighed";
-            this.duration.Name = "duration";
-            this.duration.ReadOnly = true;
-            // 
-            // Location
-            // 
-            this.location.HeaderText = "Sted";
-            this.location.Name = "Location";
-            this.location.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Beskrivelse";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             // 
             // tabController
             // 
@@ -237,6 +207,36 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // name
+            // 
+            this.name.HeaderText = "Opgave navn";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // startTime
+            // 
+            this.startTime.HeaderText = "Start tid";
+            this.startTime.Name = "startTime";
+            this.startTime.ReadOnly = true;
+            // 
+            // duration
+            // 
+            this.duration.HeaderText = "Varighed";
+            this.duration.Name = "duration";
+            this.duration.ReadOnly = true;
+            // 
+            // location
+            // 
+            this.location.HeaderText = "Sted";
+            this.location.Name = "location";
+            this.location.ReadOnly = true;
+            // 
+            // description
+            // 
+            this.description.HeaderText = "Beskrivelse";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            // 
             // EventOverview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -278,10 +278,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn activeTime;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn duration;
         private System.Windows.Forms.DataGridViewTextBoxColumn location;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn description;
 
     }
 }
