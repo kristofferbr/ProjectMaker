@@ -47,7 +47,7 @@ namespace ProjectMaker
                 textBox1.Text = data;
                 taskDataGrid.Rows.Clear();
                 foreach(Tasks t in chosenEvent.taskList){
-                    this.taskDataGrid.Rows.Add(t.Name, t.taskTime.TaskStart + " - " + t.taskTime.TaskEnd, t.TaskLocation, t.Description);
+                    this.taskDataGrid.Rows.Add(t.Name, t.taskTime.TaskStart, t.taskTime.TaskEnd - t.taskTime.TaskStart, t.TaskLocation, t.Description);
                 }
                 workerDataGrid.Rows.Clear();
                 foreach (Worker w in chosenEvent.workerList)

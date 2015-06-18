@@ -121,7 +121,16 @@ namespace ProjectMaker
 
         public void DeleteData()
         {
-            File.Delete(_eventName + ".bin");
+            IFormatter form = new BinaryFormatter();
+            Stream stream = new FileStream(this._eventName + ".bin", FileMode.Open, FileAccess.Write, FileShare.None);
+
+            form.Serialize(stream, new Event(this._eventName + ".bin"));
+
+            this._workerList.Clear();
+
+            this._taskList.Clear();
+
+            stream.Close();
         }
 
     }
