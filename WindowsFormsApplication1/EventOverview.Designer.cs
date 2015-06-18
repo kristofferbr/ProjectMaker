@@ -35,7 +35,7 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabController = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -99,7 +99,7 @@
             this.name,
             this.description,
             this.duration,
-            this.Location,
+            this.location,
             this.Column1});
             this.taskDataGrid.Location = new System.Drawing.Point(3, 3);
             this.taskDataGrid.Name = "taskDataGrid";
@@ -127,9 +127,9 @@
             // 
             // Location
             // 
-            this.Location.HeaderText = "Sted";
-            this.Location.Name = "Location";
-            this.Location.ReadOnly = true;
+            this.location.HeaderText = "Sted";
+            this.location.Name = "Location";
+            this.location.ReadOnly = true;
             // 
             // Column1
             // 
@@ -280,7 +280,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
         private System.Windows.Forms.DataGridViewTextBoxColumn duration;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Location;
+        private System.Windows.Forms.DataGridViewTextBoxColumn location;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
 
     }
